@@ -19,7 +19,7 @@ class Comment
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Ñauthor;
+    private $author;
 
     /**
      * @ORM\Column(type="text")
@@ -47,14 +47,14 @@ class Comment
         return $this->id;
     }
 
-    public function getÑauthor(): ?string
+    public function getauthor(): ?string
     {
-        return $this->Ñauthor;
+        return $this->author;
     }
 
-    public function setÑauthor(string $Ñauthor): self
+    public function setauthor(string $author): self
     {
-        $this->Ñauthor = $Ñauthor;
+        $this->author = $author;
 
         return $this;
     }
