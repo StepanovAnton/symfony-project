@@ -15,6 +15,10 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -58,11 +62,16 @@ class ConferenceController extends AbstractController
      * @param Conference $conference
      * @param CommentRepository $commentRepository
      * @param ConferenceRepository $conferenceRepository
+     * @param SpamChecker $spamChecker
      * @param string $photoDir
      * @return Response
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function show(
         Request $request,
@@ -92,7 +101,7 @@ class ConferenceController extends AbstractController
             $context = [
                 'user_ip' => $request->getClientIp(),
                 'user_agent' => $request->getClientIp(),
-                'referer' => $request->headers->get('referer'),
+                'referrer' => $request->headers->get('referer'),
                 'permalink' => $request->getUri(),
             ];
 
