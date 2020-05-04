@@ -41,7 +41,7 @@ class ConferenceController extends AbstractController
     }
 
     /**
-     * @Route("/conference", name="homepage")
+     * @Route("/", name="homepage")
      * @param ConferenceRepository $conferenceRepository
      * @return Response
      * @throws LoaderError
