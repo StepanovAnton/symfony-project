@@ -61,5 +61,4 @@ class SpamChecker
 
         return 'true' === $content ? 1 : 0;
     }
-
 }
